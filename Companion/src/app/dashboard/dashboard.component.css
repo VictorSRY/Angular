@@ -1,0 +1,67 @@
+.Dashboard-container{
+    display: flex;
+    margin: 20px;
+    margin-top: 40px;
+    min-width: 60%;
+    max-width: 60%;
+    padding: 10px;
+    padding-top: 30px; 
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background: #13181e;
+    font-size: 17px;
+}
+.Dashboard-notice{
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border: solid 2px #3b4147;
+    border-radius: .3rem;
+}
+  
+.Dashboard-assignment{
+    width: 80%;
+    margin: 24px 0px;
+    padding: 10px;
+    background: #3b4147;
+
+}
+.Dashboard-events{
+    width: 80%;
+    margin: 10px 0px;
+    padding: 10px;
+    border: solid 2px #3b4147;
+    border-radius: .3rem;
+}
+.notice{
+    color: #FF6600;
+    background-color: #2e2922;
+    border-color: #ff6600;
+}
+.notice-normal{
+    color: #00BCD4;
+    background-color: #1f3a46;
+    border-color: #00BCD4;
+}
+.notice-warning{
+    color: #e30a00;
+    background-color: #3a2f37;
+    border-color: #e30a1c;
+}
+.notice-imp{
+    color: #e2d033;
+    background-color: #414122;
+    border-color: #e2d033;
+}
+.notice-event{
+    color: #00a525;
+    background-color: #264235;
+    border-color: #00cc2e;
+} 
+.o{
+    color: #dd6600;
+}
+h3{
+    margin-bottom: 20px;
+}

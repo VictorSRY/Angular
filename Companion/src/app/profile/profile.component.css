@@ -1,0 +1,23 @@
+.profile-container{
+    display: flex;
+    margin: 20px;
+    margin-top: 40px;
+    min-width: 60%;
+    padding: 10px;
+    padding-top: 30px; 
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background: #13181e;
+}
+.profile-table{
+    width: 96%;
+    margin: 20px;
+    font-size: 20px;
+}
+.profile-otherDetials{
+    width: 80%;
+}
+.o{
+    color: #ff6600;
+}
