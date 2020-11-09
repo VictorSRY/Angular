@@ -15,4 +15,4 @@ git push -u origin main
 
 // DAily
 
-git Status && git add -A && git commit -m "CompaninonApp" && git push && git status
+git status && git add -A && git commit -m "CompaninonApp" && git push && git status
