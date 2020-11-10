@@ -20,15 +20,16 @@
     <div class="navbar navbar-dark shadow-sm" style="border-bottom-style: solid; border-bottom-color:  #dd6600; background: #252a2f;">
         <div class="container d-flex justify-content-between">
             <div>
-                <a href="#" class="navbar-brand d-flex align-items-center">
+                <a routerLink='' class="navbar-brand d-flex align-items-center">
                     <div style="display: flex; width: 20px; height: 18px; color: white; margin-right: 5px; ">
                         <img src="../images/user.png" alt="" style="max-width: 100%; max-height: 100%;filter: invert(99%) sepia(5%) saturate(980%) hue-rotate(293deg) brightness(118%) contrast(100%);"/>
                     </div>
-                    <strong style="color: #dd6600"><%=((User) session.getAttribute("user")).getName()%></strong>
+                    <strong style="color: #dd6600">CompanionApp</strong>
                 </a>
             </div>
             <div style="display: flex; flex-direction: row; align-items: center">
-                <form method="link" action="../logout"><button type="submit" class="navbar-toggler mr-2">logout</button></form>
+                <button type="submit" class="navbar-toggler mr-2">login</button>
+                <button type="submit" class="navbar-toggler mr-2">logout</button>
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
