@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const user = this.logIn.value
     this.log.data('userID:',user.userId,'\npassword:',user.password)
     this.auth.login({email:user.userId,password:user.password,returnSecureToken:true}).subscribe(data=>{this.log.data('from: LoginComponent-logInRegister() \n data:',data,'\n');
-    (data)},error=>{this.log.data('from: LoginComponent-logInRegister() \n error:',error.error.error.message)})
+    (data)},error=>{const errorM:string=error.error.error.message; this.log.data('from: LoginComponent-logInRegister() \n error:',errorM);alert(errorM)})
   }
   
   public submit(){

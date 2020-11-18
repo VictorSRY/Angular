@@ -75,7 +75,9 @@ a:focus, a:hover {
   	top: 50%;
   	transform: translate(-50%, -50%);
   	width: 25%;
-  	margin: 0 auto;
+	margin: 0 auto;
+	background: aliceblue;
+	color: #32797c;
 }
 .loginForm .form-control {
   	background-color: transparent;

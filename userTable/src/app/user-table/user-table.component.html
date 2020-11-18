@@ -1,1 +1,23 @@
-<p>user-table works!</p>
+<div class="row d-flex justify-content-center"><h1>User<span class="text-danger">-</span>Data</h1></div>
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>User name</th>
+            <th>Email</th>
+            <th>User Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let user of users;let i = index">
+        <tr>
+            <th>{{ i+1 }}</th>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.userId }}</td>
+            <td><div class="btn btn-group p-0"><button class="btn btn-primary p-0 pl-1 pr-1">Edit</button>
+                <button class="btn btn-primary dropdown-toggle p-0 pl-1 pr-1"></button>
+                <button class="btn btn-danger p-0 pl-1 pr-1">Delete</button></div></td>
+        </tr>
+    </tbody>
+</table>
