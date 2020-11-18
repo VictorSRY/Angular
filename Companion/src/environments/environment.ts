@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  ApiKey:'AIzaSyDHVOYxBC3t0faAPTC1IKzUpgah63ARtas'
+  ApiKey : 'AIzaSyDHVOYxBC3t0faAPTC1IKzUpgah63ARtas',
+  dbLink : 'https://companionapp-project.firebaseio.com'
 };
 
 /*

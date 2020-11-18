@@ -2,29 +2,30 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { AppSignInComponent } from './app-sign-in/app-sign-in.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { HomeComponent } from './home/home.component'
-import { AppSignInModule } from './app-sign-in/app-sign-in.module';
-import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
 import { ProfileComponent } from './profile/profile.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppBlogComponent } from './app-blog/app-blog.component';
+import { AppSignInComponent } from './app-sign-in/app-sign-in.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './home/header/header.component';
+import { SideNavComponent } from './home/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    SideNavComponent,
+    AppSignInComponent,
     ProfileComponent,
-    DashboardComponent
+    AppBlogComponent,
+    HomeComponent,
+    HeaderComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AppSignInModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

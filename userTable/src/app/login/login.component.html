@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="container loginForm">
+    <div class="">
+        <h1>Login</h1>
+        <form [formGroup]='logIn'>
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control form-input" id="" placeholder="" formControlName='userId' required>
+                <label class="form-label" for="">username</label>
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control form-input" id="" placeholder="" formControlName='password' required>
+                <label class="form-label" for="">password</label>
+                <span class="glyphicon form-control-feedback"></span>
+            </div>
+        </form>
+        <div class="form-inline">
+            <div class="form-group pull-right">
+                <label id="" class="loginPwReset">
+                    <a href="#">Forgot Passwort ?</a>
+                </label>
+            </div>
+        </div>
+        <button id="submit" type="submit" class="btn btn-default submit" value="Login" (click)='logInRegister()' [disabled]='!logIn.valid' >Login | Register</button>
+    </div>
+</div>

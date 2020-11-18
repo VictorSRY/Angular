@@ -1,6 +1,6 @@
 export class SignInAuthDataModel{
     
-    constructor(public eamil:string,public id:string,private _token:string,private _tokenExp:Date){  }
+    constructor(public eamil:string, public userId:string, private _token:string,private _tokenExp:Date){  }
     
     get token(){
         if(!this._tokenExp||new Date() > this._tokenExp){
