@@ -8,13 +8,15 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserTableComponent } from './user-table/user-table.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserTableComponent,
-    AddUserComponent
+    AddUserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
