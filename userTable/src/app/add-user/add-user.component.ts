@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../shared/user.model';
 import { UsertableService } from '../user-table/user-table.service';
 
@@ -13,22 +13,32 @@ export class AddUserComponent implements OnInit {
 
   formData: User = new User('', '', '')
   @Input() index: number = -1
+  private edit:boolean = false
 
-  constructor(private tableS: UsertableService, private route: ActivatedRoute) { }
+  constructor(private tableS: UsertableService, private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
-    const index = this.route.queryParams['userIndex']
+    const index = this.route.snapshot.params['userIndex']
     if (index) {
       this.index = index
+      this.edit = true
     }
-    if (index !== -1) {
-      this.tableS.getUser(index)
+    console.log('index:',this.index)
+    if (this.edit) {
+      this.formData = this.tableS.getUser(index)
     }
   }
 
   public add(form: NgForm): void {
     if (!form.valid) return
-    this.tableS.addUser(this.formData)
+    this.tableS.addUser(this.formData).subscribe(()=>{
+      this.back()
+    })
+  }
+
+  public back(){
+    if(this.edit) this.router.navigate(['../../'],{relativeTo:this.route});
+    else this.router.navigate(['../'],{relativeTo:this.route})
   }
   
 }

@@ -8,20 +8,20 @@ import { LogService } from 'src/app/shared/log.service';
 import { environment } from 'src/environments/environment';
 
 interface LogInResponceData {
-    token: string
+    idToken: string
     email: string
     refreshToken: string
     expiresIn: string
-    userId: string
+    localId: string
     registered: string
 }
 
 interface RegisterResponceData {
-    token: string
+    idToken: string
     email: string
     refreshToken: string
     expiresIn: string
-    userId: string
+    localId: string
 }
 
 @Injectable({
@@ -36,11 +36,11 @@ export class AuthService {
     constructor(private http: HttpClient, private log: LogService, private router: Router) { }
 
     public register(user: { email: string, password: String, returnSecureToken: boolean }): Observable<any> {
-        return this.http.post<RegisterResponceData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + /* firebase ApiKey */ environment.apiKey, /* data */ user).pipe(tap(data => { this.log.data('from: authService-register()  \n Register data :', data, '\n'); this.handleResponseData(data.email, data.userId, data.token, +data.expiresIn) }))
+        return this.http.post<RegisterResponceData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + /* firebase ApiKey */ environment.apiKey, /* data */ user).pipe(tap(data => { this.log.data('from: authService-register()  \n Register data :', data, '\n'); this.handleResponseData(data.email, data.localId, data.idToken, +data.expiresIn) }))
     }
 
     public login(user: { email: string, password: String, returnSecureToken: boolean }): Observable<any> {
-        return this.http.post<LogInResponceData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + /* firebase ApiKey */ environment.apiKey, /* data */ user).pipe(tap(data => { this.log.data('from: authService-login()  \n log in data :', data, '\n'); this.handleResponseData(data.email, data.userId, data.token, +data.expiresIn) }))
+        return this.http.post<LogInResponceData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + /* firebase ApiKey */ environment.apiKey, /* data */ user).pipe(tap(data => { this.log.data('from: authService-login()  \n log in data :', data, '\n'); this.handleResponseData(data.email, data.localId, data.idToken, +data.expiresIn) }))
     }
 
     public logOut(): void {
@@ -56,24 +56,30 @@ export class AuthService {
     }
 
     public autoLogIn(): void {
+        
         this.log.data('from: authService-autoLogin()  \n Message: trying Auto-login \n')
-        const authData: AuthDataModel = JSON.parse(localStorage.getItem('userAuthData'))
-        if (!authData) return
-        const expTime: number = new Date(authData.tokenExp).getTime() - new Date().getTime()
-        this.autoLogOut(expTime)
-        this.userAuth.next(authData)
+
+        const loadAuthData: { email: string, userId: string, _token: string, _tokenExp: Date } = JSON.parse(localStorage.getItem('userAuthData'))
+        this.log.data('auto login data forund:', !loadAuthData, ' data:', loadAuthData)
+        if (!loadAuthData) return
+        const authData = new AuthDataModel(loadAuthData.email, loadAuthData.userId, loadAuthData._token, loadAuthData._tokenExp)
+        if (authData.token) {
+            const expTime: number = new Date(authData.tokenExp).getTime() - new Date().getTime()
+            this.autoLogOut(expTime)
+            this.userAuth.next(authData)
+        }
     }
 
     private autoLogOut(timeout: number): void {
-        this.log.data('from: authService-autoLogOut()  \n Message:starting auto logout User \n')
+        this.log.data('from: authService-autoLogOut()  \n Message:starting auto logout check \n')
         this.autoLogOutTimer = setTimeout(() => {
             this.logOut()
         }, timeout);
     }
 
     private handleResponseData(email: string, userId: string, token: string, tokenExpIn: number): void {
-        const expTime = new Date().getTime() + tokenExpIn
-        const authData = new AuthDataModel(email, userId, token, new Date(expTime))
+        const expTime = new Date(new Date().getTime() + tokenExpIn * 1000)
+        const authData = new AuthDataModel(email, userId, token, expTime)
         this.userAuth.next(authData)
         localStorage.setItem('userAuthData', JSON.stringify(authData))
     }

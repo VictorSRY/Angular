@@ -1,4 +1,6 @@
 <div class="row d-flex justify-content-center"><h1>User<span class="text-danger">-</span>Data</h1></div>
+<div class="row"><div class="col-12 d-flex justify-content-end"><button class="btn btn-primary p-0 pl-1 pr-1" [routerLink]="['add']">add</button></div></div>
+<br>
 <table class="table table-striped">
     <thead class="thead-light">
         <tr>
@@ -15,9 +17,9 @@
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.userId }}</td>
-            <td><div class="btn btn-group p-0"><button class="btn btn-primary p-0 pl-1 pr-1">Edit</button>
+            <td><div class="btn btn-group p-0"><button class="btn btn-primary p-0 pl-1 pr-1" (click)='edit(i)'>Edit</button>
                 <button class="btn btn-primary dropdown-toggle p-0 pl-1 pr-1"></button>
-                <button class="btn btn-danger p-0 pl-1 pr-1">Delete</button></div></td>
+                <button class="btn btn-danger p-0 pl-1 pr-1" (click)='remove(i)'>Delete</button></div></td>
         </tr>
     </tbody>
 </table>

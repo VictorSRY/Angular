@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LogService } from '../shared/log.service';
 import { User } from '../shared/user.model';
@@ -19,10 +19,10 @@ export class UsertableService{
         this.getDb().subscribe( users=>{this.users=users; this.sendUpadte()}, error=>{this.log.data('from: ut_Service-setUsers() \n error:',error)})
     }
 
-    public addUser(user:User){
+    public addUser(user:User):Observable<any>{
         this.users.push(user)
         this.sendUpadte()
-        this.setDb().subscribe(data=>{ this.log.data('from: ut_Service-addUsers() \n data:',data)})
+        return this.setDb().pipe( tap(data=>{this.log.data('from: ut_Service-addUsers() \n data:',data)}) )
     }
 
     public getUser(index:number): User {
