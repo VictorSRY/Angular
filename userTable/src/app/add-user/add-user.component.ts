@@ -13,7 +13,7 @@ export class AddUserComponent implements OnInit {
 
   formData: User = new User('', '', '')
   @Input() index: number = -1
-  private edit:boolean = false
+  public edit:boolean = false
 
   constructor(private tableS: UsertableService, private route: ActivatedRoute,private router:Router) { }
 
@@ -31,9 +31,8 @@ export class AddUserComponent implements OnInit {
 
   public add(form: NgForm): void {
     if (!form.valid) return
-    this.tableS.addUser(this.formData).subscribe(()=>{
-      this.back()
-    })
+    if (this.edit) this.tableS.updateUser(this.index,this.formData).subscribe(()=>{ this.back() });
+    else this.tableS.addUser(this.formData).subscribe(()=>{ this.back() })
   }
 
   public back(){

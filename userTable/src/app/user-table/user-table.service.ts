@@ -29,6 +29,12 @@ export class UsertableService{
         return this.users.slice()[index]
     }
 
+    public updateUser(index:number,user:User):Observable<any>{
+        this.users[index]=user
+        this.sendUpadte()
+        return this.setDb().pipe( tap(data=>{this.log.data('from: ut_Service-updateUsers() \n data:',data)}) )
+    }
+
     public removeUser(index:number){
         this.users.splice(index,1)
         this.sendUpadte()
